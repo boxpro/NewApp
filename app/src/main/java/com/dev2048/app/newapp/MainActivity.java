@@ -11,13 +11,14 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.dev2048.app.newapp.adapter.ViewPagerAdapter;
+import com.dev2048.app.newapp.base.BaseActivity;
 import com.dev2048.app.newapp.fragment.IndexFragment;
 import com.dev2048.app.newapp.fragment.MeFragment;
 import com.dev2048.app.newapp.fragment.SearchFragment;
 
 import butterknife.BindView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity{
     @BindView(R.id.viewpager)
     public ViewPager mViewPager;
     @BindView(R.id.navigation)
@@ -55,8 +56,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        navigationView = (BottomNavigationView) findViewById(R.id.navigation);
-        mViewPager = (ViewPager)findViewById(R.id.viewpager);
+      //  navigationView = (BottomNavigationView) findViewById(R.id.navigation);
+       // mViewPager = (ViewPager)findViewById(R.id.viewpager);
         navigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         initViewPager();
     }
