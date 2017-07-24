@@ -32,5 +32,9 @@ dependencies {
     compile 'com.android.support:support-v4:25.3.1'
     compile 'com.jakewharton:butterknife:8.6.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile "io.reactivex.rxjava2:rxjava:2.1.1"
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.6.0'
+    compile 'com.facebook.android:facebook-android-sdk:4.+'
+    compile 'xiao.free.refreshlayout:refreshlayoutlib:v1.0.0'
+
 }
