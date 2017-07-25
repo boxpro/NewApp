@@ -1,26 +1,21 @@
 package com.dev2048.app.newapp.fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.ArrayAdapter;
-
 import com.dev2048.app.newapp.R;
+import com.dev2048.app.newapp.adapter.IndexAdapter;
 import com.dev2048.app.newapp.base.BaseFragment;
-
 import java.util.ArrayList;
-
+import java.util.List;
 import butterknife.BindView;
-import xiao.free.refreshlayoutlib.SwipeRefreshLayout;
-import xiao.free.refreshlayoutlib.base.OnLoadMoreListener;
-import xiao.free.refreshlayoutlib.base.OnRefreshListener;
 
-public class IndexFragment extends BaseFragment implements OnRefreshListener, OnLoadMoreListener {
+public class IndexFragment extends BaseFragment  {
     @BindView(R.id.index_swipe_container)
     SwipeRefreshLayout mIndexSwipeContainer;
     @BindView(R.id.index_recycle_view)
     RecyclerView mIndexRecycleView;
-
-    private ArrayList<String> mArrayList = new ArrayList<>();
-
-
+    private List<String> mArrayList = new ArrayList<>();
+    private IndexAdapter mIndexAdapter = new IndexAdapter(getContext(),mArrayList);
 
     @Override
     protected int setLayout() {
@@ -28,45 +23,42 @@ public class IndexFragment extends BaseFragment implements OnRefreshListener, On
     }
 
     @Override
-    protected void initView() {
-         initRecycle();
+    protected void initBiz() {
+        initRecycle();
     }
 
+
+    /**
+     * 所有的本地相关函数处理
+     *
+     */
     private void initRecycle() {
-        mIndexSwipeContainer.setOnRefreshListener(this);
-        mIndexSwipeContainer.setOnLoadMoreListener(this);
-    }
-
-    @Override
-    public void onLoadMore() {
-
-    }
-
-    @Override
-    public void onRefresh() {
-        mIndexSwipeContainer.postDelayed(new Runnable() {
+        mIndexSwipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
-            public void run() {
-
+            public void onRefresh() {
+                mIndexSwipeContainer.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        getDatas();
+                    }
+                });
             }
-        },3000);
+        });
+        mIndexRecycleView.setLayoutManager(new LinearLayoutManager(mActivity));
+        mIndexRecycleView.setAdapter(mIndexAdapter);
     }
 
-    @Override
-    protected void initData() {
 
-    }
-
-    @Override
-    protected void initConfig() {
-
-    }
-//测试专用
-    private ArrayList<String> getData() {
-        for (int i=0; i<50; i++){
-            mArrayList.add("测试数据" + i);
+    private void getDatas(){
+        for (int i=0;i<100;i++){
+            mArrayList.add("i");
         }
-        return mArrayList;
+        mIndexAdapter.notifyDataSetChanged();
+
     }
+
+
+
+
 
 }

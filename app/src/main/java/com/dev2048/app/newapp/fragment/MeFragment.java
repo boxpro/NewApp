@@ -11,17 +11,7 @@ public class MeFragment extends BaseFragment {
     }
 
     @Override
-    protected void initView() {
-
-    }
-
-    @Override
-    protected void initData() {
-
-    }
-
-    @Override
-    protected void initConfig() {
+    protected void initBiz() {
 
     }
 }

@@ -9,18 +9,7 @@ public class SearchFragment extends BaseFragment {
     }
 
     @Override
-    protected void initView() {
+    protected void initBiz() {
 
     }
-
-    @Override
-    protected void initData() {
-
-    }
-
-    @Override
-    protected void initConfig() {
-
-    }
-
 }
